@@ -1,4 +1,4 @@
-# picoSensors
+# pSensors
 
 Tiny Android sensor toolbox. Kotlin, **no external libraries** — only the Android
 platform API and the Kotlin stdlib (no AndroidX, no AppCompat). Package `x.vladgba.utils`.
