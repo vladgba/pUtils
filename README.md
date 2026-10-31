@@ -1,38 +1,35 @@
-# pSensors
+# pUtils
 
-Tiny Android sensor toolbox. Kotlin, **no external libraries** — only the Android
-platform API and the Kotlin stdlib (no AndroidX, no AppCompat). Package `x.vladgba.utils`.
+A pocket toolbox built on your phone's sensors: **compass, spirit level, on-screen ruler, GPS speedometer and a live sensor monitor**. Sensors run only for the tool you are looking at.
 
-## Tools
+## Features
 
-| Tab | What it does | Gestures |
+- **Compass.** A rotating dial with heading and cardinal point. Held upright, it switches to a horizon view that projects directions onto what the camera faces. Tap to switch between magnetic and true north.
+- **Level.** Flat on a surface it shows a round bubble with X/Y tilt; standing on an edge it becomes a tube level. Tap to calibrate, long-press to reset.
+- **Ruler.** Real-size scales along the screen edges (mm/cm or inches) and three measuring shapes: line, triangle (sides, angles, area) and rectangle. Calibrate it with a bank card.
+- **GPS.** Speed with an arc gauge, coordinates (decimal or DMS), altitude, accuracy, bearing, satellites, maximum speed and trip distance. Tap the speed to change units.
+- **Sensors.** Live graphs for the accelerometer, gyroscope, magnetometer, light, proximity, barometer and more, plus a list of every sensor on the device.
+- **No ads, no network, no data collection.**
+
+## Permissions
+
+| Permission | Why | Required |
 |---|---|---|
-| **Compass** | Rotating dial with heading in degrees + cardinal point. Uses the rotation-vector sensor (falls back to accelerometer + magnetometer). Held upright, it switches to a **horizon view**: directions (N, NE, E… and degrees) are projected onto the real horizon in front of the camera, with a reticle and line-of-sight elevation. Shows magnetometer calibration state. | Tap → magnetic / true north (true north needs a last known location to compute declination) |
-| **Level** | Flat on a surface → round bubble with X/Y tilt. Standing on an edge → tube level for that edge, plus a true-horizon line. Green < 0.3°. | Tap → calibrate to current position · long press → reset |
-| **Ruler** | Physical-size scales along the top and left screen edges (mm/cm or 1/16 in). Three resizable shapes: **Line** (two free handles, length, Δx/Δy, angle), **Triangle** (three free vertices: side lengths, interior angles with right-angle mark, perimeter, area), **Square** (rectangle with snap-to-square, area, diagonal). | Drag anywhere → nearest handle moves · `mm/in` toggles units · `Cal` → calibrate with a bank card held upright (85.60 mm side down the screen; drag up/down, `−`/`+` fine-tune, `Reset`) |
-| **GPS** | Speed with arc gauge, coordinates (decimal / DMS), altitude, accuracy, bearing, satellites used/visible, max speed, trip distance, fix age. | Tap speed → km/h / mph / kn / m/s · tap coordinates → copy + switch format · long press → reset max/trip |
-| **Sensors** | Live accelerometer, linear acceleration, gravity, gyroscope, magnetometer, orientation, light, proximity, barometer (+ altitude), temperature, humidity — each with a scrolling graph. Lists all device sensors. | Tap a card → pause / resume |
+| Location (precise / approximate) | GPS tab, and the true-north correction of the compass | Optional |
 
-Screen stays on while the app is open; sensors run only for the visible tab.
+The other tools work without any permission.
+
+### Notes
+
+- The screen stays on while the app is open.
+- Gestures for every tool are listed in the [guide](docs/GUIDE.md).
 
 ## Build
 
-```
-./gradlew assembleDebug        # app/build/outputs/apk/debug/app-debug.apk
+Requires Android 7.0+ (API 24). Built with Kotlin on the plain Android framework, without libraries.
+
+```bash
+./gradlew assembleRelease
 ```
 
-Requirements: JDK 17+, Android SDK 35. minSdk 24, targetSdk 35.
-Open the folder in Android Studio, or create `local.properties` with `sdk.dir=...`.
-
-## Structure
-
-```
-app/src/main/java/x/vladgba/utils/
-  MainActivity.kt   tab bar + screen host, edge-to-edge insets, permission callback
-  Ui.kt             colours, paints, Screen interface, helpers
-  CompassView.kt
-  LevelView.kt
-  RulerScreen.kt    RulerScreen (toolbar) + RulerView (drawing/touch)
-  GpsView.kt
-  SensorsScreen.kt  raw sensor cards with live graphs
-```
+The APK is written to `app/build/outputs/apk/release/`.
