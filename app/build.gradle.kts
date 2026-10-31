@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "x.vladgba.sensors"
+    namespace = "x.vladgba.utils"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "x.vladgba.sensors"
+        applicationId = "x.vladgba.utils"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

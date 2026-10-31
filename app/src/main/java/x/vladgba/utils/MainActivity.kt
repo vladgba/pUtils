@@ -1,4 +1,4 @@
-package x.vladgba.sensors
+package x.vladgba.utils
 
 import android.app.Activity
 import android.graphics.Typeface

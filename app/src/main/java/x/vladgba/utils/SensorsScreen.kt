@@ -1,4 +1,4 @@
-package x.vladgba.sensors
+package x.vladgba.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

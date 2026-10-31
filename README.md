@@ -1,7 +1,7 @@
 # picoSensors
 
 Tiny Android sensor toolbox. Kotlin, **no external libraries** — only the Android
-platform API and the Kotlin stdlib (no AndroidX, no AppCompat). Package `x.vladgba.sensors`.
+platform API and the Kotlin stdlib (no AndroidX, no AppCompat). Package `x.vladgba.utils`.
 
 ## Tools
 
@@ -27,7 +27,7 @@ Open the folder in Android Studio, or create `local.properties` with `sdk.dir=..
 ## Structure
 
 ```
-app/src/main/java/x/vladgba/sensors/
+app/src/main/java/x/vladgba/utils/
   MainActivity.kt   tab bar + screen host, edge-to-edge insets, permission callback
   Ui.kt             colours, paints, Screen interface, helpers
   CompassView.kt
