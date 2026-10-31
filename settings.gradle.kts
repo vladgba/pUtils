@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "picoSensors"
+rootProject.name = "pUtils"
 include(":app")
