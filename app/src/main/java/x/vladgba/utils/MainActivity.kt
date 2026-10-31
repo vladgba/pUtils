@@ -21,6 +21,7 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Ui.load(this)
         window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
 
         val root = LinearLayout(this).apply {
@@ -32,19 +33,22 @@ class MainActivity : Activity() {
 
         val bar = LinearLayout(this).apply {
             orientation = LinearLayout.HORIZONTAL
-            setBackgroundColor(Ui.PANEL)
+            setBackgroundColor(Ui.BG)
+            setPadding(Ui.dp(context, 8f).toInt(), 0, Ui.dp(context, 8f).toInt(), 0)
         }
         TABS.forEachIndexed { i, name ->
             val tv = TextView(this).apply {
                 text = name
                 textSize = 14f
                 gravity = Gravity.CENTER
-                typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                typeface = Typeface.create("sans-serif-medium", Typeface.NORMAL)
                 isClickable = true
                 setOnClickListener { select(i) }
             }
             tabViews.add(tv)
-            bar.addView(tv, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f))
+            bar.addView(tv, LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1f).apply {
+                val m = Ui.dp(this@MainActivity, 4f).toInt(); setMargins(m / 2, m * 2, m / 2, m * 2)
+            })
         }
         root.addView(bar, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Ui.dp(this, 56f).toInt()))
 
@@ -85,7 +89,13 @@ class MainActivity : Activity() {
             FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.MATCH_PARENT))
         current = i
         if (resumed) s.start()
-        tabViews.forEachIndexed { idx, tv -> tv.setTextColor(if (idx == i) Ui.ACCENT else Ui.DIM) }
+        tabViews.forEachIndexed { idx, tv ->
+            val on = idx == i
+            tv.setTextColor(if (on) Ui.ON_ACCENT_SOFT else Ui.DIM)
+            tv.background = if (on) android.graphics.drawable.GradientDrawable().apply {
+                setColor(Ui.ACCENT_SOFT); cornerRadius = Ui.dp(this@MainActivity, 999f)
+            } else null
+        }
         prefs().edit().putInt(KEY_TAB, i).apply()
     }
 
