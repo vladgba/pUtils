@@ -1,5 +1,8 @@
 package x.vladgba.utils
 
+import x.vladgba.utils.pui.PAboutInfo
+import x.vladgba.utils.pui.showPAbout
+
 import android.app.Activity
 import android.graphics.Typeface
 import android.os.Build
@@ -50,6 +53,11 @@ class MainActivity : Activity() {
                 val m = Ui.dp(this@MainActivity, 4f).toInt(); setMargins(m / 2, m * 2, m / 2, m * 2)
             })
         }
+        bar.addView(android.widget.ImageButton(this, null, 0, R.style.P_IconButton).apply {
+            setImageResource(R.drawable.p_ic_info)
+            contentDescription = "About"
+            setOnClickListener { showPAbout(PAboutInfo(repo = "pUtils", license = false)) }
+        }, LinearLayout.LayoutParams(Ui.dp(this, 48f).toInt(), LinearLayout.LayoutParams.MATCH_PARENT))
         root.addView(bar, LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, Ui.dp(this, 56f).toInt()))
 
         // targetSdk 35 is edge-to-edge: keep content clear of the system bars.
