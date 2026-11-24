@@ -1,0 +1,5 @@
+Use orientation and location tools, calibrate measurements and inspect live sensor values.
+
+Compass, level, ruler, GPS speedometer and sensor readings.
+
+Requires Android API 24 or later.

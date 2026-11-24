@@ -1,0 +1,1 @@
+Compass, level, ruler, GPS speedometer and sensor readings.
