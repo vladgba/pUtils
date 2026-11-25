@@ -33,3 +33,7 @@ Requires Android 7.0+ (API 24). Built with Kotlin on the plain Android framework
 ```
 
 The APK is written to `app/build/outputs/apk/release/`.
+
+## License
+
+See [LICENSE](LICENSE).
